@@ -58,7 +58,7 @@ int main(){
 //작은부분에서 답을 구하고 이를 저장한뒤, 큰부분의 답을 풀어나가는 방식
 //이전값을 저장함으로써 재귀의 중복호출과정을 제거하여 효율을 증가
 #include <stdlib.h>
-int dp(int* dparr,int n){
+/* int dp(int* dparr,int n){
     dparr[0]=1;
     dparr[1]=1;
     int temp =0; 
@@ -81,4 +81,4 @@ int i=dp(dparr,num);
 printf("%d",i);
 free(dparr);
 return 0;
-}
+} */
