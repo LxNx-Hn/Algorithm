@@ -18,7 +18,7 @@ int pibo(int n){
 
 
 //Start자리의 원반을 Bridge자리를 이용해 Destination으로 이동시킴
-void Hanoi(int n, char Start, char Bridge, char Destination) {
+/* void Hanoi(int n, char Start, char Bridge, char Destination) {
     if (n == 1) {
         printf("!!%d %c->%c \n", n, Start, Destination); // 목적지로 원판을 옮기는코드
     } else {
@@ -27,6 +27,14 @@ void Hanoi(int n, char Start, char Bridge, char Destination) {
         Hanoi(n - 1, Bridge, Start, Destination); // 치워둔 원판 다시 옮기기
     }
 }
+int main(){
+    int num;
+    printf("입력:");
+    scanf("%d",&num);
+    Hanoi(num,'A','B','C');
+    //printf("%d",Fact(num));
+    
+} */
 /*
 3입력시 - 기본설정(시작점-S,경유지=B,목적지=D) / 호출시에는 목적지와 경유지가 다름
 
@@ -42,15 +50,35 @@ void Hanoi(int n, char Start, char Bridge, char Destination) {
    
 
 */
-
-int main(){
-    int num;
-    printf("입력:");
-    scanf("%d",&num);
-    Hanoi(num,'A','B','C');
-    //printf("%d",Fact(num));
-    
-}
-
 //2^n-1
 //O(2ⁿ)
+
+
+//동적 프로그래밍 -> DP
+//작은부분에서 답을 구하고 이를 저장한뒤, 큰부분의 답을 풀어나가는 방식
+//이전값을 저장함으로써 재귀의 중복호출과정을 제거하여 효율을 증가
+#include <stdlib.h>
+int dp(int* dparr,int n){
+    dparr[0]=1;
+    dparr[1]=1;
+    int temp =0; 
+
+    for (int i=2;i<n;i++) {
+        dparr[i] = dparr[i-1]+dparr[i-2];
+        temp = dparr[i];
+    }
+    return temp;
+}
+int main(){
+int num;
+int* dparr;
+
+printf("수입력: ");
+scanf("%d", &num);
+dparr=(int*)malloc(sizeof(int) * num);
+
+int i=dp(dparr,num);
+printf("%d",i);
+free(dparr);
+return 0;
+}
