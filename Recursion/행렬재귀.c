@@ -22,10 +22,10 @@ int Matrix(int x, int y) {
     //둘다 0인경우
     if (x==0 && y==0) return arr[0][0];
     //하나만 0인경우
-    if (y==0) return arr[x][y]+Matrix(x-1,y);
-    if (x==0) return arr[x][y]+Matrix(x,y-1);
+    else if (y==0) return arr[x][y]+Matrix(x-1,y);
+    else if (x==0) return arr[x][y]+Matrix(x,y-1);
     //둘다 1이상일경우
-    return arr[x][y]+ Max(Matrix(x,y-1),Matrix(x-1,y));
+    else return arr[x][y]+ Max(Matrix(x,y-1),Matrix(x-1,y));
 }
 
 int main() {
